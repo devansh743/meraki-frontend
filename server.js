@@ -1,13 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path'); // Required for static paths
 require('dotenv').config();
 
 const Cake = require('./models/Cake');
-
 const app = express();
 
-// FIXED CORS: This allows your specific frontend to access the data
+// 1. FIXED CORS: Allows your specific Vercel frontend to talk to this API
 app.use(cors({
     origin: 'https://meraki-frontend-nine.vercel.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -15,9 +15,11 @@ app.use(cors({
     credentials: true
 }));
 
-app.use('/assets', express.static('assets'));
-
 app.use(express.json());
+
+// 2. STATIC ASSETS: This makes your 'assets' folder accessible via URL
+// Example: https://meraki-backend-l6mx.onrender.com/assets/images.png
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI)
@@ -36,7 +38,7 @@ app.get('/api/cakes', async (req, res) => {
 
 // Root Route (Fixes the "Cannot GET /" display)
 app.get('/', (req, res) => {
-    res.send("Meraki API is running...");
+    res.send("Meraki API is running successfully!");
 });
 
 app.use('/api/auth', require('./routes/authRoutes'));
