@@ -6,8 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CakeService {
-  private apiUrl = '[https://meraki-on-wheels.onrender.com/api/cakes](https://meraki-on-wheels.onrender.com/api/cakes)';
-
+  private apiUrl = 'https://meraki-backend-l6mx.onrender.com/api';
   constructor(private http: HttpClient) { }
 
   getCakes(): Observable<any[]> {
