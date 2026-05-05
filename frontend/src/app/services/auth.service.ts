@@ -6,10 +6,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = '[https://meraki-backend-l6mx.onrender.com/api](https://meraki-backend-l6mx.onrender.com/api)';
+  // CLEANED: Removed the markdown formatting from the URL string
+  private apiUrl = 'https://meraki-backend-l6mx.onrender.com/api/auth';
+
   constructor(private http: HttpClient) { }
 
   login(password: string): Observable<any> {
+    // This will now call https://meraki-backend-l6mx.onrender.com/api/auth/login
     return this.http.post(`${this.apiUrl}/login`, { password });
   }
 }

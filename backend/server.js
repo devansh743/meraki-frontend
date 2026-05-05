@@ -6,12 +6,20 @@ require('dotenv').config();
 const Cake = require('./models/Cake');
 
 const app = express();
-app.use(cors());
+
+// FIXED CORS: This allows your specific frontend to access the data
+app.use(cors({
+    origin: '*', // For testing, this allows all. For security later, use your frontend URL.
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 app.use(express.json());
 
+// MongoDB Connection
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("Connected to Meraki Database"))
-    .catch(err => console.log(err));
+    .catch(err => console.log("MongoDB Connection Error: ", err));
 
 // API Routes
 app.get('/api/cakes', async (req, res) => {
@@ -21,6 +29,11 @@ app.get('/api/cakes', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: "Server error" });
     }
+});
+
+// Root Route (Fixes the "Cannot GET /" display)
+app.get('/', (req, res) => {
+    res.send("Meraki API is running...");
 });
 
 app.use('/api/auth', require('./routes/authRoutes'));
