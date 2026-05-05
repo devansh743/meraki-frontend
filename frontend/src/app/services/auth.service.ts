@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = '[https://meraki-on-wheels.onrender.com/api](https://meraki-on-wheels.onrender.com/api)';
+  private apiUrl = '[https://meraki-on-wheels.onrender.com/api/cakes](https://meraki-on-wheels.onrender.com/api/cakes)';
 
   constructor(private http: HttpClient) { }
 
