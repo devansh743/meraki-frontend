@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'https://meraki-backend-l6mx.onrender.com/api';
+  private apiUrl = '[https://meraki-backend-l6mx.onrender.com/api](https://meraki-backend-l6mx.onrender.com/api)';
   constructor(private http: HttpClient) { }
 
   login(password: string): Observable<any> {
