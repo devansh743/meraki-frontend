@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Meraki On Wheels - Premium Mobile Patisserie bringing artisanal cakes and desserts straight to your doorstep.">
+    <meta property="og:title" content="Meraki On Wheels | Professional Mobile Bakery">
+    <meta property="og:description"
+        content="Experience the fusion of convenience and luxury. Artisanal Cakes on the Move.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1535254073040-607b474cb80d?w=1000">
+    <title>Meraki On Wheels | Premium Mobile Patisserie</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;700;800&family=Quicksand:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        meraki: {
+                            light: '#4dd0e1',
+                            DEFAULT: '#14B8A6',
+                            dark: '#0f766e',
+                        },
+                        dark: '#0f172a'
+                    },
+                    fontFamily: {
+                        sans: ['Quicksand', 'sans-serif'],
+                        brand: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #fafbfc;
+        }
+
+        /* Premium Utilities */
+        .glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .glass-dark {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #14B8A6 0%, #0ea5e9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Hover Cards */
+        .product-card {
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .product-card:hover {
+            transform: translateY(-16px);
+            box-shadow: 0 30px 60px -12px rgba(20, 184, 166, 0.15);
+        }
+
+        .product-img {
+            transition: transform 0.7s ease;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.08);
+        }
+
+        /* Scroll Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Logo Custom Animations */
+        @keyframes driveIn {
+            0% {
+                transform: translateX(-120%);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes textReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes wheelSpin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .meraki-truck-anim {
+            animation: driveIn 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        /* Hero Section Enhancements */
+        .hero-container {
+            position: relative;
+            padding: 120px 24px;
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            gap: 64px;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        @media (min-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr 1fr;
+                padding: 180px 32px;
+            }
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border-radius: 9999px;
+            background: #f0fdfa;
+            border: 1px solid #ccfbf1;
+            color: #0f766e;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 24px;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #14B8A6 0%, #0ea5e9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .view-menu-btn {
+            background: #14B8A6;
+            color: white;
+            padding: 16px 32px;
+            border-radius: 16px;
+            font-weight: 700;
+            box-shadow: 0 20px 25px -5px rgba(20, 184, 166, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .view-menu-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 25px 30px -5px rgba(20, 184, 166, 0.3);
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .hero-visual::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(20, 184, 166, 0.15) 0%, transparent 70%);
+            z-index: 0;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .main-logo-animation {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            z-index: 2;
+            animation: floatLogo 4s ease-in-out infinite;
+            mix-blend-mode: multiply;
+            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.05));
+        }
+
+        .logo-shadow {
+            position: absolute;
+            bottom: 20px;
+            width: 200px;
+            height: 20px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            filter: blur(12px);
+            z-index: 1;
+            animation: shadowScale 4s ease-in-out infinite;
+        }
+
+        @keyframes floatLogo {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-25px) rotate(2deg);
+            }
+        }
+
+        @keyframes shadowScale {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: scale(0.7);
+                opacity: 0.15;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        /* Professional Footer Styles */
+        .site-footer-credit {
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 64px;
+        }
+
+        .developer-credit {
+            font-size: 13px;
+            color: #94a3b8;
+            margin-top: 12px;
+        }
+
+        .developer-credit a {
+            color: #14B8A6;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .developer-credit a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .brand-text-anim {
+            opacity: 0;
+            animation: textReveal 0.8s ease-out 1s forwards;
+        }
+
+        .spinning-wheel {
+            transform-origin: center;
+            animation: wheelSpin 0.4s linear forwards;
+            animation-iteration-count: 3;
+        }
+
+        /* Floating Element */
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .glow-bg {
+            position: absolute;
+            background: radial-gradient(circle, rgba(20, 184, 166, 0.3) 0%, rgba(255, 255, 255, 0) 70%);
+            width: 150%;
+            height: 150%;
+            top: -25%;
+            left: -25%;
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body class="text-slate-800 antialiased selection:bg-meraki selection:text-white overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav class="glass fixed w-full top-0 z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex justify-between items-center bg-transparent">
+            <!-- Brand -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div
+                    class="w-12 h-12 relative overflow-hidden bg-white/50 rounded-xl shadow-sm border border-white flex items-center justify-center group-hover:shadow-md transition">
+                    <svg class="meraki-truck-anim w-8 h-8 text-meraki" viewBox="0 0 100 100">
+                        <path d="M10 50 H65 L80 65 V80 H10 V50Z" fill="currentColor" opacity="0.9" />
+                        <circle cx="25" cy="80" r="8" class="spinning-wheel" fill="#0f172a" />
+                        <circle cx="65" cy="80" r="8" class="spinning-wheel" fill="#0f172a" />
+                    </svg>
+                </div>
+                <div class="brand-text-anim">
+                    <h1 class="font-brand font-extrabold text-2xl text-slate-900 tracking-tight leading-none">Meraki
+                    </h1>
+                    <p
+                        class="text-meraki text-[9px] font-bold uppercase tracking-[0.3em] mt-1 border-t border-slate-200 pt-0.5">
+                        On Wheels</p>
+                </div>
+            </a>
+            <!-- Desktop Links -->
+            <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+                <a href="#menu" class="hover:text-meraki transition">Menu</a>
+                <a href="#testimonials" class="hover:text-meraki transition">Testimonials</a>
+                <a href="#menu"
+                    class="bg-dark text-white px-6 py-2.5 rounded-full hover:bg-meraki hover:shadow-lg hover:shadow-meraki/30 transition duration-300">Order
+                    Now</a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="md:hidden text-slate-900 text-2xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-container">
+        <div class="hero-text reveal">
+            <span class="badge">● NOW DELIVERING IN CITY CENTER</span>
+            <h2 class="font-brand text-5xl lg:text-7xl font-black text-slate-900 mb-6 leading-[1.1] tracking-tight">
+                Artisanal Cakes <br> <span class="highlight">On the Move.</span></h2>
+            <p class="text-slate-600 text-lg md:text-xl mb-10 max-w-lg leading-relaxed">
+                Experience the perfect fusion of convenience and luxury. From newborn celebrations to grand
+                anniversaries,
+                we drive the patisserie right to your doorstep.
+            </p>
+            <button class="view-menu-btn" onclick="location.href='#menu'">View Menu →</button>
+        </div>
+
+        <div class="hero-visual reveal delay-200">
+            <!-- This is the direct path Angular uses to find assets -->
+            <img src="assets/images.png" alt="Meraki on Wheels Logo" class="main-logo-animation"
+                onerror="this.src='https://images.unsplash.com/photo-1535254073040-607b474cb80d?w=1000'; this.classList.remove('main-logo-animation'); this.classList.add('w-full', 'rounded-[3rem]', 'shadow-2xl', 'border-4', 'border-white', 'rotate-3');">
+
+            <!-- Professional Backdrop Shadow -->
+            <div class="logo-shadow"></div>
+        </div>
+    </div>
+
+    <!-- Menu / Featured Creations -->
+    <section id="menu" class="py-24 max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 reveal">
+            <div>
+                <span class="text-meraki font-bold text-sm uppercase tracking-widest mb-2 block">Our Menu</span>
+                <h3 class="font-brand text-4xl md:text-5xl font-black text-slate-900">Featured Creations</h3>
+            </div>
+            <div class="flex gap-2">
+                <button class="px-5 py-2 bg-dark text-white rounded-full text-sm font-bold shadow-md">All</button>
+                <button
+                    class="px-5 py-2 bg-white text-slate-600 rounded-full text-sm font-bold border border-slate-200 hover:border-meraki hover:text-meraki transition">Cakes</button>
+                <button
+                    class="px-5 py-2 bg-white text-slate-600 rounded-full text-sm font-bold border border-slate-200 hover:border-meraki hover:text-meraki transition">Pastries</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Product 1 -->
+            <div class="product-card bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm reveal">
+                <div class="relative h-72 overflow-hidden bg-slate-100">
+                    <img src="https://images.unsplash.com/photo-1557925923-cd4648e211a0?w=800"
+                        class="product-img w-full h-full object-cover" alt="Velvet Sky Bloom">
+                    <div
+                        class="absolute top-4 left-4 glass px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider text-meraki-dark shadow-sm backdrop-blur-md">
+                        Anniversary</div>
+                </div>
+                <div class="p-8">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-brand text-2xl font-extrabold text-slate-800 tracking-tight">Velvet Sky Bloom
+                        </h4>
+                        <div class="bg-teal-50 text-meraki px-2 py-1 rounded text-xs font-bold"><i
+                                class="fa-solid fa-star"></i> 4.9</div>
+                    </div>
+                    <p class="text-slate-500 text-sm mb-6 line-clamp-2">A luxurious red velvet sponge layered with
+                        Madagascar vanilla bean cream cheese frosting.</p>
+
+                    <div class="flex gap-2 mb-6">
+                        <button
+                            class="flex-1 py-2 text-xs font-bold bg-white text-slate-600 border border-slate-200 rounded-xl hover:border-meraki focus:bg-teal-50 focus:border-meraki focus:text-meraki transition">250g</button>
+                        <button
+                            class="flex-1 py-2 text-xs font-bold bg-white text-slate-600 border border-slate-200 rounded-xl hover:border-meraki focus:bg-teal-50 focus:border-meraki focus:text-meraki transition">500g</button>
+                        <button
+                            class="flex-1 py-2 text-xs font-bold bg-teal-50 text-meraki border border-meraki rounded-xl transition">1kg</button>
+                    </div>
+
+                    <div class="flex justify-between items-center border-t border-slate-100 pt-6">
+                        <div>
+                            <p class="text-xs text-slate-400 font-medium uppercase">Total Price</p>
+                            <span class="font-brand text-3xl font-black text-slate-900">₹799</span>
+                        </div>
+                        <button
+                            class="bg-dark text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-meraki hover:scale-110 transition duration-300 shadow-md">
+                            <i class="fa-solid fa-plus text-lg"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div
+                class="product-card bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm reveal delay-100">
+                <div class="relative h-72 overflow-hidden bg-slate-100">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800"
+                        class="product-img w-full h-full object-cover" alt="Dark Truffle Magic">
+                    <div
+                        class="absolute top-4 left-4 glass px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider text-meraki-dark shadow-sm backdrop-blur-md">
+                        Birthday</div>
+                </div>
+                <div class="p-8">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-brand text-2xl font-extrabold text-slate-800 tracking-tight">Dark Truffle Magic
+                        </h4>
+                        <div class="bg-teal-50 text-meraki px-2 py-1 rounded text-xs font-bold"><i
+                                class="fa-solid fa-star"></i> 4.8</div>
+                    </div>
+                    <p class="text-slate-500 text-sm mb-6 line-clamp-2">Intense Belgian dark chocolate ganache draped
+                        over a moist chocolate chiffon base.</p>
+
+                    <div class="flex gap-2 mb-6">
+                        <button
+                            class="flex-1 py-2 text-xs font-bold bg-white text-slate-600 border border-slate-200 rounded-xl hover:border-meraki focus:bg-teal-50 focus:border-meraki focus:text-meraki transition">250g</button>
+                        <button
+                            class="flex-1 py-2 text-xs font-bold bg-teal-50 text-meraki border border-meraki rounded-xl transition">500g</button>
+                        <button
+                            class="flex-1 py-2 text-xs font-bold bg-white text-slate-600 border border-slate-200 rounded-xl hover:border-meraki focus:bg-teal-50 focus:border-meraki focus:text-meraki transition">1kg</button>
+                    </div>
+
+                    <div class="flex justify-between items-center border-t border-slate-100 pt-6">
+                        <div>
+                            <p class="text-xs text-slate-400 font-medium uppercase">Total Price</p>
+                            <span class="font-brand text-3xl font-black text-slate-900">₹549</span>
+                        </div>
+                        <button
+                            class="bg-dark text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-meraki hover:scale-110 transition duration-300 shadow-md">
+                            <i class="fa-solid fa-plus text-lg"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div
+                class="product-card bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm reveal delay-200">
+                <div class="relative h-72 overflow-hidden bg-slate-100">
+                    <img src="https://images.unsplash.com/photo-1542826438-bd32f43d626f?w=800"
+                        class="product-img w-full h-full object-cover" alt="Lemon Blueberry Zest">
+                    <div
+                        class="absolute top-4 left-4 glass px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider text-meraki-dark shadow-sm backdrop-blur-md">
+                        Premium</div>
+                </div>
+                <div class="p-8">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-brand text-2xl font-extrabold text-slate-800 tracking-tight">Lemon Berry Zest
+                        </h4>
+                        <div class="bg-teal-50 text-meraki px-2 py-1 rounded text-xs font-bold"><i
+                                class="fa-solid fa-star"></i> 5.0</div>
+                    </div>
+                    <p class="text-slate-500 text-sm mb-6 line-clamp-2">Zesty lemon cake filled with fresh blueberry
+                        compote and light mascarpone cream.</p>
+
+                    <div class="flex gap-2 mb-6">
+                        <button
+                            class="flex-1 py-2 text-xs font-bold bg-white text-slate-600 border border-slate-200 rounded-xl hover:border-meraki focus:bg-teal-50 focus:border-meraki focus:text-meraki transition">250g</button>
+                        <button
+                            class="flex-1 py-2 text-xs font-bold bg-white text-slate-600 border border-slate-200 rounded-xl hover:border-meraki focus:bg-teal-50 focus:border-meraki focus:text-meraki transition">500g</button>
+                        <button
+                            class="flex-1 py-2 text-xs font-bold bg-teal-50 text-meraki border border-meraki rounded-xl transition">1kg</button>
+                    </div>
+
+                    <div class="flex justify-between items-center border-t border-slate-100 pt-6">
+                        <div>
+                            <p class="text-xs text-slate-400 font-medium uppercase">Total Price</p>
+                            <span class="font-brand text-3xl font-black text-slate-900">₹899</span>
+                        </div>
+                        <button
+                            class="bg-dark text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-meraki hover:scale-110 transition duration-300 shadow-md">
+                            <i class="fa-solid fa-plus text-lg"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mt-16 text-center reveal">
+            <button
+                class="glass border border-slate-200 text-slate-800 px-8 py-4 rounded-2xl font-bold shadow-sm hover:border-meraki transition duration-300">View
+                Full Menu <i class="fa-solid fa-arrow-right ml-2 text-sm"></i></button>
+        </div>
+    </section>
+
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-24 bg-teal-50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h3 class="font-brand text-4xl md:text-5xl font-black text-slate-900 mb-6">Sweet Words</h3>
+                <p class="text-slate-600 mx-auto max-w-xl">Don't just take our word for it. Read what our satisfied
+                    customers have to say about the Meraki experience.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div
+                    class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 reveal hover:-translate-y-2 transition duration-300">
+                    <div class="flex text-amber-400 text-sm mb-4">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-slate-700 mb-6 italic">"The Velvet Sky Bloom cake was phenomenal. Not only did it
+                        look absolutely stunning, but it tasted even better. The truck delivery made our anniversary so
+                        special!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200" alt="Sarah J."
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-slate-900 text-sm">Sarah Jenkins</h5>
+                            <span class="text-xs text-slate-500">Anniversary Event</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div
+                    class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 reveal delay-100 hover:-translate-y-2 transition duration-300">
+                    <div class="flex text-amber-400 text-sm mb-4">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-slate-700 mb-6 italic">"I ordered the Lemon Berry Zest for a corporate lunch. It
+                        arrived precisely on time in their beautiful truck. Everyone was asking where it came from."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200"
+                                alt="Michael T." class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-slate-900 text-sm">Michael Torres</h5>
+                            <span class="text-xs text-slate-500">Corporate Client</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div
+                    class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 reveal delay-200 hover:-translate-y-2 transition duration-300">
+                    <div class="flex text-amber-400 text-sm mb-4">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p class="text-slate-700 mb-6 italic">"Such a unique concept! The Dark Truffle Magic was incredibly
+                        rich. The packaging is premium and the online tracking feature is a game-changer."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200" alt="Emily R."
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-slate-900 text-sm">Emily Robinson</h5>
+                            <span class="text-xs text-slate-500">Birthday Celebration</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-300 py-16 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            <!-- Brand -->
+            <div>
+                <div class="flex items-center gap-2 mb-6">
+                    <i class="fa-solid fa-truck text-meraki text-2xl"></i>
+                    <h2 class="font-brand font-extrabold text-2xl text-white tracking-tight">Meraki</h2>
+                </div>
+                <p class="text-sm text-slate-400 leading-relaxed mb-6">Premium artisanal cakes and pastries delivered
+                    across the city in our specialized temperature-controlled vehicles.</p>
+                <div class="flex gap-4">
+                    <a href="#"
+                        class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-meraki hover:text-white transition"><i
+                            class="fa-brands fa-instagram"></i></a>
+                    <a href="#"
+                        class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-meraki hover:text-white transition"><i
+                            class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"
+                        class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-meraki hover:text-white transition"><i
+                            class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+
+            <!-- Contact -->
+            <div>
+                <h4 class="font-bold text-white mb-6 uppercase tracking-wider text-sm">Contact Us</h4>
+                <ul class="space-y-4 text-sm">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-location-dot mt-1 text-meraki"></i>
+                        <span>123 Baker Street,<br>Food District, City 10012</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-phone text-meraki"></i>
+                        <span>+1 (555) 123-4567</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-envelope text-meraki"></i>
+                        <span>hello@merakionwheels.com</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Newsletter -->
+            <div>
+                <h4 class="font-bold text-white mb-6 uppercase tracking-wider text-sm">Newsletter</h4>
+                <p class="text-sm text-slate-400 mb-4">Subscribe for seasonal specials and sweet promotions.</p>
+                <form class="flex" onsubmit="event.preventDefault();">
+                    <input type="email" placeholder="Email address"
+                        class="bg-slate-800 text-white px-4 py-2 rounded-l-lg outline-none w-full border border-slate-700 focus:border-meraki transition">
+                    <button type="submit"
+                        class="bg-meraki px-4 py-2 rounded-r-lg text-white hover:bg-meraki-dark transition"><i
+                            class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+
+        <div class="site-footer-credit">
+            <p>&copy; 2026 Meraki on Wheels. All rights reserved.</p>
+
+            <div class="developer-credit">
+                Developed with ❤️ by
+                <a href="https://api.whatsapp.com/send?phone=919408274425&text=Hi%20Devansh%20Soni,%20I%20saw%20your%20work%20on%20Meraki%20and%20wanted%20to%20connect!"
+                    target="_blank" rel="noopener noreferrer">
+                    Devansh Soni
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Scroll Animations and Navbar Effect -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Navbar blur effect on scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('shadow-sm');
+                    navbar.style.background = 'rgba(255, 255, 255, 0.9)';
+                } else {
+                    navbar.classList.remove('shadow-sm');
+                    navbar.style.background = 'rgba(255, 255, 255, 0.6)';
+                }
+            });
+
+            // Scroll Reveal Animation via IntersectionObserver
+            const revealElements = document.querySelectorAll('.reveal');
+
+            const revealOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealOnScroll = new IntersectionObserver(function (entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add("active");
+                        observer.unobserve(entry.target); // Stop observing once revealed
+                    }
+                });
+            }, revealOptions);
+
+            revealElements.forEach(el => {
+                revealOnScroll.observe(el);
+            });
+
+            // --- ALL BUTTONS LOGIC --- //
+
+            // 1. Menu Category Buttons
+            const categoryBtns = document.querySelectorAll('#menu .flex.gap-2 > button');
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    // Reset all
+                    categoryBtns.forEach(b => {
+                        b.className = 'px-5 py-2 bg-white text-slate-600 rounded-full text-sm font-bold border border-slate-200 hover:border-meraki hover:text-meraki transition';
+                    });
+                    // Set active
+                    e.target.className = 'px-5 py-2 bg-dark text-white rounded-full text-sm font-bold shadow-md transition';
+                });
+            });
+
+            // 2. Product Weight Selectors & Add to Cart
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach(card => {
+                const weightBtns = card.querySelectorAll('.flex.gap-2.mb-6 button');
+                const priceEl = card.querySelector('.font-brand.text-3xl');
+
+                // Extract base price based on currently active button
+                let currentPrice = parseInt(priceEl.innerText.replace('₹', ''));
+                let activeWeightStr = card.querySelector('.bg-teal-50').innerText.trim();
+                let basePrice = currentPrice;
+                if (activeWeightStr === '500g') basePrice = Math.round(currentPrice / 1.8);
+                if (activeWeightStr === '1kg') basePrice = Math.round(currentPrice / 3.2);
+
+                weightBtns.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        // Reset all to inactive
+                        weightBtns.forEach(b => {
+                            b.className = 'flex-1 py-2 text-xs font-bold bg-white text-slate-600 border border-slate-200 rounded-xl hover:border-meraki focus:bg-teal-50 focus:border-meraki focus:text-meraki transition';
+                        });
+                        // Set active
+                        e.target.className = 'flex-1 py-2 text-xs font-bold bg-teal-50 text-meraki border border-meraki rounded-xl transition';
+
+                        // Fake price change
+                        let weight = e.target.innerText;
+                        let multiplier = weight === '250g' ? 1 : (weight === '500g' ? 1.8 : 3.2);
+                        priceEl.innerText = '₹' + Math.floor(basePrice * multiplier);
+                    });
+                });
+
+                // Add to cart button animation
+                const addBtn = card.querySelector('.fa-plus').parentElement;
+                addBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const originalHTML = addBtn.innerHTML;
+                    addBtn.innerHTML = '<i class="fa-solid fa-check text-lg"></i>';
+                    addBtn.classList.remove('bg-dark');
+                    addBtn.classList.add('bg-meraki');
+                    addBtn.classList.remove('hover:bg-meraki');
+
+                    setTimeout(() => {
+                        addBtn.innerHTML = originalHTML;
+                        addBtn.classList.add('bg-dark');
+                        addBtn.classList.add('hover:bg-meraki');
+                        addBtn.classList.remove('bg-meraki');
+                    }, 2000);
+                });
+            });
+
+            // 3. Global CTA Buttons (Alerts for demo)
+            const globalBtns = document.querySelectorAll('button');
+            globalBtns.forEach(btn => {
+                if (btn.innerText.includes('View Full Menu')) {
+                    btn.addEventListener('click', () => {
+                        alert('Taking you to the full ordering portal...');
+                    });
+                }
+            });
+
+            // Mobile menu toggle alert
+            const mobileToggle = document.querySelector('.fa-bars').parentElement;
+            if (mobileToggle) {
+                mobileToggle.addEventListener('click', () => {
+                    alert('Mobile navigation menu opened!');
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

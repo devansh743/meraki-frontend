@@ -1,0 +1,153 @@
+/* Hero Section Styles */
+.hero-container {
+    position: relative;
+    padding: 80px 24px;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    gap: 48px;
+    align-items: center;
+    overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+    .hero-container {
+        grid-template-columns: 1fr 1fr;
+        padding: 140px 32px 100px;
+    }
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 9999px;
+    background: #f0fdfa;
+    border: 1px solid #ccfbf1;
+    color: #0f766e;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 24px;
+}
+
+.highlight {
+    background: linear-gradient(135deg, #14B8A6 0%, #0ea5e9 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.view-menu-btn {
+    background: #14B8A6;
+    color: white;
+    padding: 16px 32px;
+    border-radius: 16px;
+    font-weight: 700;
+    box-shadow: 0 20px 25px -5px rgba(20, 184, 166, 0.2);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.view-menu-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 25px 30px -5px rgba(20, 184, 166, 0.3);
+}
+
+.hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.hero-visual::before {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(20, 184, 166, 0.15) 0%, transparent 70%);
+    z-index: 0;
+    animation: pulse 4s ease-in-out infinite;
+}
+
+.main-logo-animation {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    z-index: 2;
+    animation: floatLogo 4s ease-in-out infinite;
+    mix-blend-mode: multiply;
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.05));
+}
+
+.logo-shadow {
+    position: absolute;
+    bottom: 20px;
+    width: 200px;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    filter: blur(12px);
+    z-index: 1;
+    animation: shadowScale 4s ease-in-out infinite;
+}
+
+/* Section Transitions */
+section {
+    position: relative;
+    overflow: hidden;
+}
+
+#menu {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+#testimonials {
+    background: #f0fdfa;
+    position: relative;
+}
+
+#testimonials::before {
+    content: '"';
+    position: absolute;
+    top: 40px;
+    right: 10%;
+    font-size: 200px;
+    color: #ccfbf1;
+    font-family: serif;
+    opacity: 0.5;
+    line-height: 1;
+}
+
+/* Animations */
+@keyframes floatLogo {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-25px) rotate(2deg); }
+}
+
+@keyframes shadowScale {
+    0%, 100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(0.7); opacity: 0.15; }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+/* Category Filter Styles */
+.bg-dark {
+    background-color: #0f172a;
+}
+
+.text-meraki-dark {
+    color: #0f766e;
+}

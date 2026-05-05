@@ -1,0 +1,142 @@
+<!-- Navbar -->
+<nav class="glass fixed w-full top-0 z-50 transition-all duration-300" id="navbar"
+    [ngClass]="{'shadow-sm': isScrolled, 'bg-white/90': isScrolled, 'bg-transparent': !isScrolled}">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex justify-between items-center bg-transparent">
+        <!-- Brand -->
+        <div (click)="toggleDevMode()" class="flex items-center gap-3 group cursor-pointer">
+            <div
+                class="w-12 h-12 relative overflow-hidden bg-white/50 rounded-xl shadow-sm border border-white flex items-center justify-center group-hover:shadow-md transition">
+                <svg class="meraki-truck-anim w-8 h-8 text-meraki" viewBox="0 0 100 100">
+                    <path d="M10 50 H65 L80 65 V80 H10 V50Z" fill="currentColor" opacity="0.9" />
+                    <circle cx="25" cy="80" r="8" class="spinning-wheel" fill="#0f172a" />
+                    <circle cx="65" cy="80" r="8" class="spinning-wheel" fill="#0f172a" />
+                </svg>
+            </div>
+            <div class="brand-text-anim">
+                <h1 class="font-brand font-extrabold text-2xl text-slate-900 tracking-tight leading-none">Meraki</h1>
+                <p
+                    class="text-meraki text-[9px] font-bold uppercase tracking-[0.3em] mt-1 border-t border-slate-200 pt-0.5">
+                    On Wheels</p>
+            </div>
+        </div>
+
+        <!-- Desktop Links -->
+        <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+            <a routerLink="/" fragment="menu" class="hover:text-meraki transition">Menu</a>
+            <a routerLink="/" fragment="testimonials" class="hover:text-meraki transition">Testimonials</a>
+            <a *ngIf="showDevLink" routerLink="/login"
+                class="hover:text-meraki transition font-bold text-meraki-dark">Admin</a>
+            <a routerLink="/" fragment="menu"
+                class="bg-dark text-white px-6 py-2.5 rounded-full hover:bg-meraki hover:shadow-lg hover:shadow-meraki/30 transition duration-300">Order
+                Now</a>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="md:hidden text-slate-900 text-2xl focus:outline-none">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </div>
+</nav>
+
+<!-- Router Content -->
+<main>
+    <router-outlet></router-outlet>
+</main>
+
+<!-- Professional Footer -->
+<footer class="bg-slate-950 text-white pt-20 pb-10 relative overflow-hidden">
+    <!-- Subtle Background Glow -->
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-teal-500/5 rounded-full blur-[100px]"></div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 relative z-10">
+            <!-- Brand Column -->
+            <div class="space-y-6">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-10 h-10 bg-white/5 backdrop-blur-md rounded-xl flex items-center justify-center border border-white/10">
+                        <i class="fa-solid fa-truck-fast text-meraki text-xl"></i>
+                    </div>
+                    <span class="font-brand font-black text-2xl tracking-tight">Meraki</span>
+                </div>
+                <p class="text-slate-400 text-sm leading-relaxed max-w-xs">
+                    Premium artisanal cakes and pastries delivered across the city in our specialized
+                    temperature-controlled vehicles.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#"
+                        class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-meraki hover:text-white transition-all duration-300 border border-white/5">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="#"
+                        class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-meraki hover:text-white transition-all duration-300 border border-white/5">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="#"
+                        class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-meraki hover:text-white transition-all duration-300 border border-white/5">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="space-y-6">
+                <h4 class="text-xs font-black uppercase tracking-[0.2em] text-meraki">Navigation</h4>
+                <ul class="space-y-4 text-sm font-medium text-slate-400">
+                    <li><a routerLink="/" fragment="menu" class="hover:text-white transition-colors">Featured Menu</a>
+                    </li>
+                    <li><a routerLink="/" fragment="testimonials" class="hover:text-white transition-colors">Customer
+                            Stories</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Our Story</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Delivery Areas</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="space-y-6">
+                <h4 class="text-xs font-black uppercase tracking-[0.2em] text-meraki">Get in Touch</h4>
+                <ul class="space-y-4 text-sm text-slate-400">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-location-dot text-meraki mt-1"></i>
+                        <span>123 Baker Street, Food District, City 10012</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-phone text-meraki"></i>
+                        <span>+91 90333 21523</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-envelope text-meraki"></i>
+                        <span>hello&#64;merakionwheels.com</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="space-y-6">
+                <h4 class="text-xs font-black uppercase tracking-[0.2em] text-meraki">Newsletter</h4>
+                <p class="text-slate-400 text-sm leading-relaxed">Subscribe for seasonal specials and sweet promotions.
+                </p>
+                <form (submit)="$event.preventDefault();" class="relative">
+                    <input type="email" placeholder="Email address"
+                        class="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-sm focus:outline-none focus:border-meraki transition-colors">
+                    <button type="submit"
+                        class="absolute right-2 top-2 bg-meraki text-white w-8 h-8 rounded-lg flex items-center justify-center hover:bg-meraki-dark transition-colors shadow-lg shadow-meraki/20">
+                        <i class="fa-solid fa-paper-plane text-xs"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p class="text-slate-500 text-xs font-medium">
+                © 2026 Meraki on Wheels. All rights reserved.
+            </p>
+            <div class="developer-credit text-slate-400 text-xs font-medium">
+                Developed with <span class="text-rose-500">❤️</span> by
+                <a href="https://api.whatsapp.com/send?phone=919408274425" target="_blank"
+                    class="text-meraki hover:underline font-bold">Devansh Soni</a>
+            </div>
+        </div>
+    </div>
+</footer>

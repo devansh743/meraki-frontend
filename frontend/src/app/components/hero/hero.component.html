@@ -1,0 +1,133 @@
+<!-- Hero Section -->
+<div class="hero-container">
+    <div class="hero-text reveal">
+        <span class="badge">● NOW DELIVERING IN CITY CENTER</span>
+        <h2 class="font-brand text-5xl lg:text-7xl font-black text-slate-900 mb-6 leading-[1.1] tracking-tight">
+            Artisanal Cakes <br> <span class="highlight">On the Move.</span></h2>
+        <p class="text-slate-600 text-lg md:text-xl mb-10 max-w-lg leading-relaxed">
+            Experience the perfect fusion of convenience and luxury. From newborn celebrations to grand anniversaries,
+            we drive the patisserie right to your doorstep.
+        </p>
+        <button class="view-menu-btn" (click)="scrollToMenu()">View Menu →</button>
+    </div>
+
+    <div class="hero-visual reveal delay-200">
+        <img src="assets/images.png" alt="Meraki on Wheels Logo" class="main-logo-animation"
+            onerror="this.src='https://images.unsplash.com/photo-1535254073040-607b474cb80d?w=1000'; this.classList.remove('main-logo-animation'); this.classList.add('w-full', 'rounded-[3rem]', 'shadow-2xl', 'border-4', 'border-white', 'rotate-3');">
+        <div class="logo-shadow"></div>
+    </div>
+</div>
+
+<!-- Menu / Featured Creations -->
+<section id="menu" class="py-16 max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row justify-between items-end mb-8 gap-6 reveal">
+        <div>
+            <span class="text-meraki font-bold text-sm uppercase tracking-widest mb-2 block">Our Menu</span>
+            <h3 class="font-brand text-4xl md:text-5xl font-black text-slate-900">Featured Creations</h3>
+        </div>
+        <div class="flex flex-col gap-4">
+            <!-- Main Categories -->
+            <div class="flex flex-wrap gap-2">
+                <button *ngFor="let cat of mainCategories" (click)="filterMain(cat)"
+                    [ngClass]="currentMainCategory === cat ? 'bg-dark text-white shadow-md' : 'bg-white text-slate-600 border border-slate-200 hover:border-meraki hover:text-meraki'"
+                    class="px-4 py-1.5 rounded-full text-[13px] font-bold transition">
+                    {{ cat }}s
+                </button>
+            </div>
+            <!-- Sub Categories (Only for Cakes) -->
+            <div class="flex flex-wrap gap-2 reveal" *ngIf="currentMainCategory === 'Cake'">
+                <button *ngFor="let cat of subCategories" (click)="filterSub(cat)"
+                    [ngClass]="currentSubCategory === cat ? 'bg-meraki text-white shadow-sm' : 'bg-teal-50 text-meraki-dark border border-teal-100 hover:bg-meraki hover:text-white'"
+                    class="px-4 py-1.5 rounded-full text-xs font-bold transition">
+                    {{ cat }}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <app-product-card class="reveal" *ngFor="let cake of filteredCakes | slice:0:(showAll ? undefined : 4)" [cake]="cake"></app-product-card>
+    </div>
+
+    <div class="mt-16 text-center reveal" *ngIf="filteredCakes.length > 4">
+        <button (click)="toggleMenu()"
+            class="glass border border-slate-200 text-slate-800 px-8 py-4 rounded-2xl font-bold shadow-sm hover:border-meraki transition duration-300">
+            {{ showAll ? 'Show Less' : 'View Full Menu' }} 
+            <i class="fa-solid ml-2 text-sm" [ngClass]="showAll ? 'fa-chevron-up' : 'fa-arrow-right'"></i>
+        </button>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section id="testimonials" class="py-16 bg-teal-50">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="text-center mb-16 reveal">
+            <h3 class="font-brand text-4xl md:text-5xl font-black text-slate-900 mb-6">Sweet Words</h3>
+            <p class="text-slate-600 mx-auto max-w-xl">Don't just take our word for it. Read what our satisfied
+                customers have to say about the Meraki experience.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div
+                class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 reveal hover:-translate-y-2 transition duration-300">
+                <div class="flex text-amber-400 text-sm mb-4">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="text-slate-700 mb-6 italic">"The Velvet Sky Bloom cake was phenomenal. Not only did it look
+                    absolutely stunning, but it tasted even better. The truck delivery made our anniversary so special!"
+                </p>
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-slate-200 rounded-full overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200" alt="Sarah J."
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-slate-900 text-sm">Sarah Jenkins</h5>
+                        <span class="text-xs text-slate-500">Anniversary Event</span>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 reveal delay-100 hover:-translate-y-2 transition duration-300">
+                <div class="flex text-amber-400 text-sm mb-4">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="text-slate-700 mb-6 italic">"I ordered the Lemon Berry Zest for a corporate lunch. It arrived
+                    precisely on time in their beautiful truck. Everyone was asking where it came from."</p>
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-slate-200 rounded-full overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200" alt="Michael T."
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-slate-900 text-sm">Michael Torres</h5>
+                        <span class="text-xs text-slate-500">Corporate Client</span>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 reveal delay-200 hover:-translate-y-2 transition duration-300">
+                <div class="flex text-amber-400 text-sm mb-4">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                        class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                </div>
+                <p class="text-slate-700 mb-6 italic">"Such a unique concept! The Dark Truffle Magic was incredibly
+                    rich. The packaging is premium and the online tracking feature is a game-changer."</p>
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-slate-200 rounded-full overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200" alt="Emily R."
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-slate-900 text-sm">Emily Robinson</h5>
+                        <span class="text-xs text-slate-500">Birthday Celebration</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

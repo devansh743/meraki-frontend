@@ -1,0 +1,16 @@
+<div class="cake-card" *ngIf="cake">
+    <img [src]="cake.image" [alt]="cake.name">
+    <h3>{{ cake.name }}</h3>
+    <p>{{ cake.description }}</p>
+
+    <div class="weight-selector">
+        <button *ngFor="let v of cake.variants" (click)="updateVariant(v)" [class.active]="selectedWeight === v.weight">
+            {{ v.weight }}
+        </button>
+    </div>
+
+    <div class="price-tag">
+        <span>₹{{ currentPrice }}</span>
+        <button class="order-btn">Order Now</button>
+    </div>
+</div>
