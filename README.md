@@ -1,25 +1,27 @@
-# Meraki on Wheels | Artisanal Cake E-Commerce 🎂
+# Frontend
 
-A premium, full-stack e-commerce platform built for **Meraki on Wheels**, a luxury patisserie service. This project showcases a professional **MEAN stack** implementation with dynamic pricing and a secure admin management system.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.21.
 
-## 🌟 Key Features
-- **Dynamic Product Filtering:** Real-time filtering by category (Cakes, Pastries, Cupcakes) and occasion.
-- **Advanced Pricing Logic:** Real-time price calculation based on weight selection (500g vs 1kg) using Angular state management.
-- **Secure Admin Dashboard:** A protected management suite allowing the client to update inventory without developer intervention.
-- **Mobile-First Design:** Fully responsive UI tailored for the "luxury move" brand identity.
+## Development server
 
-## 🛠️ Tech Stack
-- **Frontend:** Angular 17+, TypeScript, CSS3 Animations (Material Design principles).
-- **Backend:** Node.js, Express.js.
-- **Database:** MongoDB Atlas (NoSQL).
-- **Deployment:** Vercel (Frontend) & Render (Backend).
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## 🚀 Installation & Setup
-1. Clone the repository: `git clone https://github.com/[YourUsername]/meraki-frontend.git`
-2. Install dependencies: `npm install`
-3. Start the dev server: `ng serve`
-4. Open `http://localhost:4200` in your browser.
+## Code scaffolding
 
----
-**Developed by Devansh Soni**  
-*Final-year B.Tech CSE Student & Digital Marketing Specialist*
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+## Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

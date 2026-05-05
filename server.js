@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
 
-const Cake = require('./models/Cake');
+const Cake = require('../models/Cake');
 
 const app = express();
 
@@ -36,8 +36,8 @@ app.get('/', (req, res) => {
     res.send("Meraki API is running...");
 });
 
-app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/admin', require('./routes/adminRoutes'));
+app.use('/api/auth', require('../routes/authRoutes'));
+app.use('/api/admin', require('../routes/adminRoutes'));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
