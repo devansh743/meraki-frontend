@@ -8,8 +8,18 @@ const Cake = require('./models/Cake');
 const app = express();
 
 // Allows your Vercel frontend to access this Render backend
+const allowedOrigins = [
+    process.env.FRONTEND_URL || 'https://meraki-frontend-nine.vercel.app',
+    'http://localhost:4200'
+];
 app.use(cors({
-    origin: 'https://meraki-frontend-nine.vercel.app',
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
