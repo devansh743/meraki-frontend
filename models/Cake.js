@@ -16,4 +16,5 @@ const CakeSchema = new mongoose.Schema({
     isActive: { type: Boolean, default: true }
 });
 
-module.exports = mongoose.models.Cake || mongoose.model('Cake', CakeSchema);
+// Replace the old export with this one:
+module.exports = mongoose.model('Cake', cakeSchema, 'meraki');
