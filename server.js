@@ -44,11 +44,12 @@ mongoose.connect(process.env.MONGODB_URI)
 // 4. API ROUTES
 app.get('/api/cakes', async (req, res) => {
     try {
-        const cakes = await Cake.find();
+        const cakes = await Cake.find({ isActive: true });
+        console.log(`Found ${cakes.length} cakes in meraki collection`);
         res.json(cakes);
     } catch (error) {
-        console.error("Fetch Error:", error);
-        res.status(500).json({ error: "Server error" });
+        console.error("Database Fetch Error:", error.message);
+        res.status(500).json({ error: "Could not fetch menu", details: error.message });
     }
 });
 

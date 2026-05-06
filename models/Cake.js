@@ -1,13 +1,11 @@
-// models/Cake.js
 const mongoose = require('mongoose');
 
-const CakeSchema = new mongoose.Schema({
+const cakeSchema = new mongoose.Schema({ // Keep this lowercase 'c'
     name: { type: String, required: true },
     description: { type: String, required: true },
     image: { type: String, required: true },
     type: { type: String, enum: ['Cake', 'Pastry', 'Cup Cake'], required: true, default: 'Cake' },
     category: { type: String, enum: ['Anniversary', 'Birthday', 'Premium', 'New Born', 'Children Special', 'Festive Special', 'General'] },
-    // Flexible pricing for 250g, 500g, 1kg
     variants: [{
         weight: String,
         price: Number,
@@ -16,5 +14,6 @@ const CakeSchema = new mongoose.Schema({
     isActive: { type: Boolean, default: true }
 });
 
-// FIX: Change 'cakeSchema' to 'CakeSchema' to match the definition above
-module.exports = mongoose.model('Cake', CakeSchema, 'meraki');
+// The 3rd argument 'meraki' is the SECRET SAUCE. It tells Mongoose 
+// exactly which collection to look in.
+module.exports = mongoose.model('Cake', cakeSchema, 'meraki');
