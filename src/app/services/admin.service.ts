@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class AdminService {
-    private apiUrl = 'https://meraki-backend-l6mx.onrender.com/api/admin';
+    private apiUrl = 'https://meraki-frontend-s05n.onrender.com/api/admin';
 
     constructor(private http: HttpClient) { }
 

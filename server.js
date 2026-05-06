@@ -9,9 +9,11 @@ const app = express();
 
 // Allows your Vercel frontend to access this Render backend
 const allowedOrigins = [
-    process.env.FRONTEND_URL || 'https://meraki-frontend-nine.vercel.app',
+    'https://meraki-frontend-theta.vercel.app',
+    'https://meraki-frontend-nine.vercel.app',
+    process.env.FRONTEND_URL,
     'http://localhost:4200'
-];
+].filter(Boolean);
 app.use(cors({
     origin: (origin, callback) => {
         if (!origin || allowedOrigins.includes(origin)) {

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class CakeService {
   // Update this to your ACTUAL live Render URL
-  private apiUrl = 'https://meraki-backend-l6mx.onrender.com/api/cakes';
+  private apiUrl = 'https://meraki-frontend-s05n.onrender.com/api/cakes';
 
   constructor(private http: HttpClient) { }
 
