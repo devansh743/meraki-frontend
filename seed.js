@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Cake = require('../models/cake');
+const Cake = require('./models/cake');
 require('dotenv').config();
 
 const sampleCakes = [
